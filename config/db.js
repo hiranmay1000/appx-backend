@@ -3,6 +3,7 @@ const { MongoClient } = require('mongodb');
 
 const URI = process.env.MONGO_URI;
 const client = new MongoClient(URI, {
+  ssl: true,                           // Enforce SSL
   tls: true,           // Enable TLS (SSL)
   tlsAllowInvalidCertificates: false, // Enforce valid SSL/TLS certificates
   retryWrites: true,   // Allow retrying writes in case of network issues
