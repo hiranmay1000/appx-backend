@@ -1,9 +1,12 @@
 require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
-const uri = process.env.MONGO_URI;
-const client = new MongoClient(uri);
-
+const URI = process.env.MONGO_URI;
+const client = new MongoClient(URI, {
+  tls: true,           // Enable TLS (SSL)
+  tlsAllowInvalidCertificates: false, // Enforce valid SSL/TLS certificates
+  retryWrites: true,   // Allow retrying writes in case of network issues
+});
 let db;
 
 async function connectToDatabase() {
