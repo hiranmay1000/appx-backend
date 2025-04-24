@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Yarn lock file (if you don't want it in version control)
+yarn.lock
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# Build files (if applicable)
+dist/
+build/
+
+# Dependency directories
+npm-debug.log
+yarn-error.log
+
+# OS-specific files (macOS, Windows, etc.)
+.DS_Store
+Thumbs.db
