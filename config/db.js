@@ -4,8 +4,10 @@ const { MongoClient } = require('mongodb');
 const URI = process.env.MONGO_URI;
 
 const client = new MongoClient(URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
   tls: true,
-  tlsAllowInvalidCertificates: false,
+  tlsInsecure: true, // 👈 TEMP bypass for Render issues
   retryWrites: true,
 });
 
