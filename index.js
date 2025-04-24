@@ -17,14 +17,14 @@ app.use(cors());
 connectToDatabase()
   .then(() => {
     console.log("Database connected successfully");
-    
+
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server is running on port: ${PORT}`);
     });
   })
   .catch((err) => {
     console.error("Failed to connect to database", err);
-    process.exit(1); 
+    process.exit(1);
   });
 
 // Routes
