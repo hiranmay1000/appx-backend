@@ -2,12 +2,13 @@ require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
 const URI = process.env.MONGO_URI;
+
 const client = new MongoClient(URI, {
-  ssl: true,                           // Enforce SSL
-  tls: true,           // Enable TLS (SSL)
-  tlsAllowInvalidCertificates: false, // Enforce valid SSL/TLS certificates
-  retryWrites: true,   // Allow retrying writes in case of network issues
+  tls: true,
+  tlsAllowInvalidCertificates: false,
+  retryWrites: true,
 });
+
 let db;
 
 async function connectToDatabase() {
@@ -16,14 +17,16 @@ async function connectToDatabase() {
   try {
     console.log("Attempting to connect to the database...");
     await client.connect();
-    db = client.db('appx-data'); 
+    db = client.db('appx-data');
     console.log("Connected to the database");
     return db;
   } catch (error) {
+    if (error.message.includes('SSL') || error.message.includes('TLS')) {
+      console.error("SSL/TLS Error: Check your MongoDB Atlas security settings and TLS compatibility.");
+    }
     console.error("Failed to connect to the database:", error);
     throw error;
   }
 }
 
-// Correctly export connectToDatabase
 module.exports = connectToDatabase;
